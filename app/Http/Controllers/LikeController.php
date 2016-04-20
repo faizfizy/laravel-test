@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Like;
+use App\User;
 
 class LikeController extends Controller {
 
@@ -45,11 +46,11 @@ class LikeController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($user_id) {
 
-        $like = Like::find($id);
+        $user = User::find($user_id)->likes;
 
-        return $like->toJson();
+        return $user->toJson();
     }
 
     /**

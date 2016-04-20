@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Cart;
+use App\User;
 
 class CartController extends Controller {
 
@@ -45,11 +46,11 @@ class CartController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($user_id) {
 
-        $cart = Cart::find($id);
+        $user = User::find($user_id)->carts;
 
-        return $cart->toJson();
+        return $user->toJson();
     }
 
     /**

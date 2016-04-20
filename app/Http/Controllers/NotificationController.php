@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Notification;
+use App\User;
 
 class NotificationController extends Controller {
 
@@ -45,11 +46,11 @@ class NotificationController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($user_id) {
         
-        $notification = Notification::find($id);
+        $user = User::find($user_id)->notifications;
 
-        return $notification->toJson();
+        return $user->toJson();
     }
 
     /**

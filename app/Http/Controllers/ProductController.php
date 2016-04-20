@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Product;
+use App\User;
 
 class ProductController extends Controller {
 
@@ -14,7 +15,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        
+
         $product = Product::all();
 
         return $product->toJson();
@@ -45,11 +46,11 @@ class ProductController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        
-        $product = Product::find($id);
+    public function show($user_id) {
 
-        return $product->toJson();
+        $user = User::find($user_id)->products;
+
+        return $user->toJson();
     }
 
     /**

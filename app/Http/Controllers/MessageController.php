@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Message;
+use App\User;
 
 class MessageController extends Controller {
 
@@ -14,7 +15,7 @@ class MessageController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        
+
         $message = Message::all();
 
         return $message->toJson();
@@ -45,11 +46,11 @@ class MessageController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        
-        $message = Message::find($id);
+    public function show($from) {
 
-        return $message->toJson();
+        $user = User::find($from)->messages_from;
+
+        return $user;
     }
 
     /**
